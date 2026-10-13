@@ -64,7 +64,7 @@ public class CancionControlador {
 		return cancionServicio.buscarCriterios(titulo, durMin, durMax, idEst, textoDesc);
 	}
 
-	@PostMapping
+	@PostMapping({"", "/"})
 	public ResponseEntity<?> insertar(@RequestBody Cancion cancion) {
 		return cancionServicio.insertar(cancion);
 	}
