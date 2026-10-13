@@ -47,10 +47,8 @@ public class CargarDatos implements CommandLineRunner {
 		// 1. CARGA DE ROLES
 		Rol rolAdmin = rolRepo.findByNombre("ADMIN").orElseGet(() -> rolRepo.save(new Rol(null, "ADMIN")));
 		Rol rolUser = rolRepo.findByNombre("USER").orElseGet(() -> rolRepo.save(new Rol(null, "USER")));
-		// Asegurar la existencia del Rol 4 (BANEADO) para moderación y desbaneo
-		if (rolRepo.findById(4).isEmpty() && rolRepo.findByNombre("BANEADO").isEmpty()) {
-			rolRepo.save(new Rol(4, "BANEADO"));
-		}
+		// Asegurar la existencia del Rol BANEADO para moderación y desbaneo
+		rolRepo.findByNombre("BANEADO").orElseGet(() -> rolRepo.save(new Rol(null, "BANEADO")));
 
 		// 2. CARGA DE PREGUNTAS DE SEGURIDAD
 		if (preguntaRepo.count() == 0) {
